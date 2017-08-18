@@ -227,8 +227,7 @@ abstract class DeobfuscationTransformer extends Remapper implements IClassTransf
         byte[] bytes = writer.toByteArray();
         
         if (DeobfuscationTransformer.ENABLE_CACHE && binPath != null) {
-            try {
-                ByteArrayInputStream is = new ByteArrayInputStream(bytes);
+            try (ByteArrayInputStream is = new ByteArrayInputStream(bytes)) {
                 Files.createDirectories(binPath.getParent());
                 Files.copy(is, binPath, StandardCopyOption.REPLACE_EXISTING);
                 Files.write(hashPath, hash, StandardOpenOption.CREATE);
