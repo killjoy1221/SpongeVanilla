@@ -41,6 +41,7 @@ import org.spongepowered.server.launch.transformer.deobf.reader.SrgReader;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -59,7 +60,7 @@ public final class NotchDeobfuscationTransformer extends DeobfuscationTransforme
 
     private final Set<String> loadedClasses = new HashSet<>();
 
-    public NotchDeobfuscationTransformer() throws IOException {
+    public NotchDeobfuscationTransformer() throws IOException, NoSuchAlgorithmException {
         URL mappings = (URL) Launch.blackboard.get("vanilla.srg_mappings");
 
         SrgReader reader = new SrgReader();
@@ -205,7 +206,7 @@ public final class NotchDeobfuscationTransformer extends DeobfuscationTransforme
         }
     }
 
-    private void createSuperMaps(ClassReader reader, String name, @Nullable String superName, @Nullable String[] interfaces) {
+    void createSuperMaps(ClassReader reader, String name, @Nullable String superName, @Nullable String[] interfaces) {
         this.loadedClasses.add(name);
 
         Map<String, String> fields = new HashMap<>();
@@ -251,7 +252,7 @@ public final class NotchDeobfuscationTransformer extends DeobfuscationTransforme
 
         private final ClassReader reader;
 
-        private NotchClassRemapper(ClassReader reader, ClassVisitor cv) {
+        NotchClassRemapper(ClassReader reader, ClassVisitor cv) {
             super(ASM5, cv, NotchDeobfuscationTransformer.this);
             this.reader = reader;
         }

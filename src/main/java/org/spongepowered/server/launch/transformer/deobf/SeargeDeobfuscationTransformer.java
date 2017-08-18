@@ -30,13 +30,14 @@ import org.spongepowered.server.launch.transformer.deobf.reader.McpCsvReader;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.security.NoSuchAlgorithmException;
 
-public final class SeargeDeobfuscationTransformer extends DeobfuscationTransformer implements SrgRemapper {
+public final class SeargeDeobfuscationTransformer extends DeobfuscationTransformer {
 
     private final ImmutableMap<String, String> fields;
     private final ImmutableMap<String, String> methods;
 
-    public SeargeDeobfuscationTransformer() throws IOException {
+    public SeargeDeobfuscationTransformer() throws IOException, NoSuchAlgorithmException {
         Path mcpDir = (Path) Launch.blackboard.get("vanilla.mcp_mappings");
 
         McpCsvReader reader = new McpCsvReader();
