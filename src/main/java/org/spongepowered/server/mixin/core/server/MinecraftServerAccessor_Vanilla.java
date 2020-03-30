@@ -25,19 +25,21 @@
 package org.spongepowered.server.mixin.core.server;
 
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.server.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 import java.io.File;
+import java.util.Map;
 
 @Mixin(MinecraftServer.class)
 public interface MinecraftServerAccessor_Vanilla {
 
-    @Accessor("anvilFile") File vanillaAccessor$getAnvilFile();
+    @Accessor("anvilFile") File accessor$getAnvilFile();
+
+    @Accessor("worlds") Map<DimensionType, ServerWorld> accessor$getWorlds();
 
     @Invoker("stopServer") void accessor$stopServer();
-
-
-
 }

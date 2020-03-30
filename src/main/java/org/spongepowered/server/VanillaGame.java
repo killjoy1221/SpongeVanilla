@@ -57,5 +57,4 @@ public final class VanillaGame extends SpongeGame {
     public Server getServer() {
         return this.server;
     }
-
 }
