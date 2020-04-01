@@ -457,7 +457,7 @@ public final class VanillaWorldManager implements SpongeWorldManager {
         final ServerChunkProvider chunkProvider = serverWorld.getChunkProvider();
         chunkProvider.getLightManager().func_215598_a(500);
         this.serverAccessor.accessor$setServerTime(Util.milliTime());
-        chunkProvider.func_217228_a(TicketType.START, spawnChunkPos, 11, Unit.INSTANCE);
+        chunkProvider.registerTicket(TicketType.START, spawnChunkPos, 11, Unit.INSTANCE);
 
         while (chunkProvider.func_217229_b() != 441) {
             this.serverAccessor.accessor$setServerTime(Util.milliTime() + 10L);

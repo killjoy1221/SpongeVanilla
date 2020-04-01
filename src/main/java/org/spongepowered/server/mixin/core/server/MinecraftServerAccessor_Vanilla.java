@@ -72,6 +72,4 @@ public interface MinecraftServerAccessor_Vanilla {
     @Invoker("stopServer") void accessor$stopServer();
 
     @Invoker("runScheduledTasks") void accessor$runScheduledTasks();
-
-    @Invoker("loadInitialChunks") void accessor$loadInitialChunks(ServerWorld serverWorld);
 }

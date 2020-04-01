@@ -25,8 +25,8 @@
 package org.spongepowered.server.chat;
 
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.event.ClickEvent;
 
 import java.net.URI;
@@ -53,7 +53,7 @@ public final class ChatFormatter {
     private ChatFormatter() {
     }
 
-    public static void formatChatComponent(TextComponentTranslation component) {
+    public static void formatChatComponent(TranslationTextComponent component) {
         String message = (String) component.getFormatArgs()[1];
         ITextComponent formatted = format(message);
         if (formatted == null) {
@@ -91,7 +91,7 @@ public final class ChatFormatter {
 
             if (pos < start) {
                 if (result == null) {
-                    result = new TextComponentString(s.substring(pos, start));
+                    result = new StringTextComponent(s.substring(pos, start));
                 } else {
                     result.appendText(s.substring(pos, start));
                 }
@@ -99,11 +99,11 @@ public final class ChatFormatter {
 
             pos = end;
 
-            ITextComponent link = new TextComponentString(displayUrl);
+            ITextComponent link = new StringTextComponent(displayUrl);
             link.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
 
             if (result == null) {
-                result = new TextComponentString("");
+                result = new StringTextComponent("");
             }
 
             result.appendSibling(link);
@@ -113,7 +113,7 @@ public final class ChatFormatter {
         // If there is something left, append the rest
         if (pos < s.length()) {
             if (result == null) {
-                result = new TextComponentString(s.substring(pos));
+                result = new StringTextComponent(s.substring(pos));
             } else {
                 result.appendText(s.substring(pos));
             }

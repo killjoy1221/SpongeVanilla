@@ -27,7 +27,6 @@ package org.spongepowered.server.mixin.chunkio;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.chunkio.ChunkIOExecutor;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.server.bridge.ChunkLoaderTickBridge;
 
 @Mixin(value = MinecraftServer.class, priority = 1112)
 public abstract class MinecraftServerMixin_ChunkIO implements ChunkLoaderTickBridge {

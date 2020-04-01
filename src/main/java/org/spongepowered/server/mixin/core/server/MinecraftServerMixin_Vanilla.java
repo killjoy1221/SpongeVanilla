@@ -56,7 +56,6 @@ import org.spongepowered.common.bridge.world.WorldServerBridge_AsyncLighting;
 import org.spongepowered.common.text.SpongeTexts;
 import org.spongepowered.common.world.WorldManager;
 import org.spongepowered.server.SpongeVanilla;
-import org.spongepowered.server.bridge.ChunkLoaderTickBridge;
 
 import java.util.List;
 import java.util.Queue;
