@@ -25,8 +25,14 @@
 package org.spongepowered.server.mixin.core.server;
 
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.chunk.listener.IChunkStatusListenerFactory;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.storage.DimensionSavedDataManager;
+import net.minecraft.world.storage.SaveHandler;
+import net.minecraft.world.storage.WorldInfo;
+import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
@@ -37,9 +43,35 @@ import java.util.Map;
 @Mixin(MinecraftServer.class)
 public interface MinecraftServerAccessor_Vanilla {
 
+    @Accessor("LOGGER") static Logger accessor$getLogger() {
+        throw new RuntimeException("Accessor was not mixed!");
+    }
+
     @Accessor("anvilFile") File accessor$getAnvilFile();
+
+    @Accessor("chunkStatusListenerFactory") IChunkStatusListenerFactory accessor$getChunkStatusListenerFactory();
+
+    @Accessor("enableBonusChest") boolean accessor$getEnableBonusChest();
 
     @Accessor("worlds") Map<DimensionType, ServerWorld> accessor$getWorlds();
 
+    @Accessor("serverTime") void accessor$setServerTime(long serverTime);
+
+    @Invoker("convertMapIfNeeded") void accessor$convertMapIfNeeded(String worldName);
+
+    @Invoker("setUserMessage") void accessor$setUserMessage(ITextComponent userMessage);
+
+    @Invoker("setResourcePackFromWorld") void accessor$setResourcePackFromWorld(String worldName, SaveHandler saveHandler);
+
+    @Invoker("loadDataPacks") void accessor$loadDataPacks(File directory, WorldInfo worldInfo);
+
+    @Invoker("applyDebugWorldInfo") void accessor$applyDebugWorldInfo(WorldInfo worldInfo);
+
+    @Invoker("func_213204_a") void accessor$func_213204_a(DimensionSavedDataManager manager);
+
     @Invoker("stopServer") void accessor$stopServer();
+
+    @Invoker("runScheduledTasks") void accessor$runScheduledTasks();
+
+    @Invoker("loadInitialChunks") void accessor$loadInitialChunks(ServerWorld serverWorld);
 }
