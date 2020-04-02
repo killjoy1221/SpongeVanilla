@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.util.ReportedException;
+import net.minecraft.crash.ReportedException;
 import org.spongepowered.server.launch.plugin.PluginCandidate;
 
 import java.util.Collection;
@@ -113,12 +113,12 @@ final class PluginReporter {
             }
         }
 
-        category.addCrashSection("Plugins", pluginsBuilder);
+        category.addDetail("Plugins", pluginsBuilder);
         if (requirementsBuilder.length() > 0) {
-            category.addCrashSection("Requirements", requirementsBuilder);
+            category.addDetail("Requirements", requirementsBuilder);
         }
         if (dependenciesBuilder.length() > 0) {
-            category.addCrashSection("Dependencies", dependenciesBuilder);
+            category.addDetail("Dependencies", dependenciesBuilder);
         }
 
         throw new ReportedException(crash);

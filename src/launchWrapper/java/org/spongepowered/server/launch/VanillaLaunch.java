@@ -57,7 +57,7 @@ public final class VanillaLaunch {
     }
 
     public static void setRemapper(SrgRemapper newRemapper) {
-        checkState(remapper == SrgRemapper.NONE, "Remapper was already set");
+        Preconditions.checkState(remapper == SrgRemapper.NONE, "Remapper was already set");
         VanillaLaunch.remapper = newRemapper;
     }
 

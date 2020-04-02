@@ -32,6 +32,8 @@ import com.google.inject.Singleton;
 import io.netty.buffer.Unpooled;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.play.ServerPlayNetHandler;
+import net.minecraft.network.play.client.CCustomPayloadPacket;
 import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraft.network.play.server.SPacketCustomPayload;
 import net.minecraft.server.management.PlayerList;
@@ -139,14 +141,14 @@ public class VanillaChannelRegistrar extends SpongeNetworkManager {
         return !isReservedChannel(name) && !this.channels.containsKey(name);
     }
 
-    public void post(RemoteConnection connection, CPacketCustomPayload packet) {
-        VanillaChannelBinding binding = this.channels.get(packet.getChannelName());
+    public void post(RemoteConnection connection, CCustomPayloadPacket packet) {
+        VanillaChannelBinding binding = this.channels.get(((CCustomPayloadPacketAccessor) packet).getChannelName());
         if (binding != null) {
             binding.post(connection, packet.getBufferData());
         }
     }
 
-    public void registerChannels(NetHandlerPlayServer netHandler) {
+    public void registerChannels(ServerPlayNetHandler netHandler) {
         // Register our channel list on the client
         String channels = CHANNEL_JOINER.join(this.channels.keySet());
         PacketBuffer buffer = new PacketBuffer(Unpooled.wrappedBuffer(channels.getBytes(StandardCharsets.UTF_8)));

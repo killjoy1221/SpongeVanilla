@@ -60,7 +60,7 @@ public final class AccessTransformers {
     private static Map<String, ClassAccessModifiers.Builder> rules = new HashMap<>();
 
     private static void verifyState() {
-        checkState(rules != null, "Attempted to register after access transformer was initialized");
+        Preconditions.checkState(rules != null, "Attempted to register after access transformer was initialized");
     }
 
     public static void register(Path path) throws IOException {
@@ -92,7 +92,7 @@ public final class AccessTransformers {
             }
 
             List<String> parts = SEPARATOR.splitToList(line);
-            checkArgument(parts.size() <= 3, "Invalid access transformer config line: %s", line);
+            Preconditions.checkArgument(parts.size() <= 3, "Invalid access transformer config line: %s", line);
 
             AccessModifier modifier = null;
 

@@ -105,7 +105,7 @@ public final class VanillaServerTweaker implements ITweaker {
         if (VanillaLaunch.ENVIRONMENT == PRODUCTION) {
             // Enable Notch->Searge deobfuscation
             VanillaLaunch.getLogger().info("De-obfuscation mappings are provided by MCP (http://www.modcoderpack.com)");
-            Launch.blackboard.put("vanilla.cmap", getResource("mappings.cmap"));
+            Launch.blackboard.put("vanilla.cmap", Resources.getResource("mappings.cmap"));
             loader.registerTransformer("org.spongepowered.server.launch.transformer.deobf.NotchDeobfuscationTransformer");
         } else {
             // Enable Searge->MCP deobfuscation (if running in ForgeGradle)
@@ -123,7 +123,7 @@ public final class VanillaServerTweaker implements ITweaker {
         VanillaLaunch.getLogger().debug("Registering access transformers...");
         try {
             // Apply our access transformers
-            AccessTransformers.register(getResource("META-INF/common_at.cfg"));
+            AccessTransformers.register(Resources.getResource("META-INF/common_at.cfg"));
         } catch (IOException e) {
             throw new LaunchException("Failed to register SpongeCommon/SpongeVanilla access transformers", e);
         }
@@ -137,7 +137,7 @@ public final class VanillaServerTweaker implements ITweaker {
                     AccessTransformers.register(path);
                 } else {
                     // Try as resource in classpath instead
-                    AccessTransformers.register(getResource(at));
+                    AccessTransformers.register(Resources.getResource(at));
                 }
             } catch (IOException e) {
                 VanillaLaunch.getLogger().error("Failed to load access transformer from {}", at, e);
