@@ -74,7 +74,7 @@ import org.spongepowered.server.inject.SpongeVanillaModule;
 import org.spongepowered.server.launch.VanillaCommandLine;
 import org.spongepowered.server.launch.VanillaLaunch;
 import org.spongepowered.server.launch.plugin.PluginSource;
-import org.spongepowered.server.mixin.core.server.MinecraftServerAccessor_Vanilla;
+import org.spongepowered.server.accessor.server.MinecraftServerAccessor_Vanilla;
 import org.spongepowered.server.plugin.MetaPluginContainer;
 import org.spongepowered.server.plugin.MetadataContainer;
 import org.spongepowered.server.plugin.MinecraftPluginContainer;

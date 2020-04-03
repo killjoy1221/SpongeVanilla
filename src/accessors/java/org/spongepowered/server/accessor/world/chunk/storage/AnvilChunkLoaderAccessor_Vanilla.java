@@ -22,4 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@org.spongepowered.api.util.annotation.NonnullByDefault package org.spongepowered.server.mixin.core.tileentity;
+package org.spongepowered.server.accessor.world.chunk.storage;
+
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.storage.AnvilChunkLoader;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
+import org.spongepowered.asm.mixin.gen.Invoker;
+
+import java.io.File;
+import java.util.Map;
+
+@Mixin(AnvilChunkLoader.class)
+public interface AnvilChunkLoaderAccessor_Vanilla {
+
+    @Accessor("chunksToSave") Map<ChunkPos, NBTTagCompound> accessor$getChunksToSave();
+
+    @Accessor("chunkSaveLocation") File accessor$getChunkSaveLocation();
+
+    @Invoker("checkedReadChunkFromNBT") Chunk accessor$checkedReadChunkFromNBT(World worldIn, int x, int z, NBTTagCompound compound);
+
+}

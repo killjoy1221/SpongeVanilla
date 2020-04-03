@@ -53,6 +53,9 @@ sourceSets {
         java {
             srcDir("invalid/main/java")
         }
+        commonProj.afterEvaluate {
+            this@creating.compileClasspath += sourceSets["invalid"].compileClasspath
+        }
     }
     main {
         invalid.compileClasspath += compileClasspath + output

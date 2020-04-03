@@ -1,4 +1,4 @@
-package org.spongepowered.server.mixin.accessor.world.storage;
+package org.spongepowered.server.accessor.world.storage;
 
 import com.mojang.datafixers.DataFixer;
 import net.minecraft.world.storage.SaveFormat;

@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.server.mixin.core.server;
+package org.spongepowered.server.accessor.server;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.ITextComponent;

@@ -29,7 +29,7 @@ import com.google.inject.Singleton;
 import org.spongepowered.api.Server;
 import org.spongepowered.common.SpongeGame;
 import org.spongepowered.common.SpongeImpl;
-import org.spongepowered.server.mixin.core.server.MinecraftServerAccessor_Vanilla;
+import org.spongepowered.server.accessor.server.MinecraftServerAccessor_Vanilla;
 
 import java.nio.file.Path;
 
