@@ -10,7 +10,7 @@ subprojects {
         gradleKotlinDsl()
     }
     apply(plugin = "org.gradle.kotlin.kotlin-dsl")
-    apply(plugin = "org.spongepowered.gradle.sponge.impl")
+    apply(plugin = "org.spongepowered.gradle.sponge.dev")
 }
 
 repositories {
@@ -25,5 +25,5 @@ repositories {
 dependencies {
     implementation("net.minecrell.licenser:net.minecrell.licenser.gradle.plugin:0.4.1")
     implementation("net.minecraftforge.gradle:ForgeGradle:3.+")
-    implementation(group = "org.spongepowered", name = "spongegradle", version = "0.11.0-SNAPSHOT")
+    implementation(group = "org.spongepowered", name = "spongegradle", version = "0.11.1-SNAPSHOT")
 }
