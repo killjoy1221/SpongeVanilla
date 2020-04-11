@@ -30,20 +30,21 @@ import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.launchwrapper.IClassTransformer;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;
+import org.spongepowered.server.launch.VanillaInternalLaunchService;
 
-import javax.annotation.Nullable;
 
 public final class AccessTransformer implements IClassTransformer {
 
     private final ImmutableMap<String, ClassAccessModifiers> modifiers;
 
-    public AccessTransformer()  {
-        this.modifiers = AccessTransformers.build();
+    public AccessTransformer(VanillaInternalLaunchService service)  {
+        this.modifiers = AccessTransformers.build(service);
     }
 
     @Override @Nullable

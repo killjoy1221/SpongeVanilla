@@ -24,13 +24,13 @@
  */
 package org.spongepowered.server.launch.transformer.at;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkState;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+import com.google.common.base.Preconditions;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
-import org.spongepowered.server.launch.VanillaLaunch;
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spongepowered.server.launch.VanillaInternalLaunchService;
 import org.spongepowered.server.launch.transformer.deobf.SrgRemapper;
 
 import java.io.BufferedReader;
@@ -44,7 +44,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Nullable;
 
 public final class AccessTransformers {
 
@@ -145,8 +144,8 @@ public final class AccessTransformers {
         return pos >= 0 ? s.substring(0, pos) : s;
     }
 
-    static ImmutableMap<String, ClassAccessModifiers> build() {
-        final SrgRemapper remapper = VanillaLaunch.getRemapper();
+    static ImmutableMap<String, ClassAccessModifiers> build(VanillaInternalLaunchService service) {
+        final SrgRemapper remapper = service.getRemapper();
 
         ImmutableMap.Builder<String, ClassAccessModifiers> builder = ImmutableMap.builder();
         for (Map.Entry<String, ClassAccessModifiers.Builder> entry : rules.entrySet()) {

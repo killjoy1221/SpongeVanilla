@@ -25,13 +25,12 @@
 package org.spongepowered.server.launch.transformer.at;
 
 import com.google.common.collect.ImmutableMap;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.server.launch.transformer.deobf.SrgRemapper;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
-import javax.annotation.Nullable;
 
 final class ClassAccessModifiers {
 
