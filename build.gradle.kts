@@ -1,10 +1,26 @@
 import org.spongepowered.gradle.dev.SourceType
 
+buildscript {
+    repositories {
+        maven("https://repo.spongepowered.org/maven")
+    }
+    dependencies {
+        classpath("org.spongepowered:mixingradle:0.7-SNAPSHOT")
+    }
+}
 plugins {
-    id("org.spongepowered.gradle.sponge.impl") version "0.11.1"
+    id("org.spongepowered.gradle.sponge.impl") version "0.11.2-SNAPSHOT"
     id("net.minecraftforge.gradle")
 }
 
+apply {
+    plugin("org.spongepowered.mixin")
+}
+tasks {
+    compileJava {
+        options.compilerArgs.addAll(listOf("-Xmaxerrs", "1000"))
+    }
+}
 spongeDev {
     common(project.project(":SpongeCommon"))
     api(common.map { it.project("SpongeAPI") })
@@ -18,9 +34,15 @@ spongeDev {
         }
         register("launch") {
             sourceType.set(SourceType.Launch)
+            configurations += "launch"
         }
         register("launchWrapper") {
             dependsOn += "launch"
+            configurations += "launch"
+        }
+        register("modLauncher") {
+            dependsOn += "launch"
+            configurations += "launch"
         }
         register("invalid") {
             sourceType.set(SourceType.Invalid)
@@ -29,13 +51,14 @@ spongeDev {
 }
 
 val common by spongeDev.common
+val launch by configurations.creating
 
 dependencies {
     minecraft("net.minecraft:" + common.properties["minecraftDep"] + ":" + common.properties["minecraftVersion"])
     implementation(common)
 
-    "launchImplementation"("net.sf.jopt-simple:jopt-simple:5.0.4")
-    "launchImplementation"(group = "org.spongepowered", name = "plugin-meta", version = "0.4.1")
+    launch("net.sf.jopt-simple:jopt-simple:5.0.4")
+    launch(group = "org.spongepowered", name = "plugin-meta", version = "0.4.1")
 }
 
 minecraft {

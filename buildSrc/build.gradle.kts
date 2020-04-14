@@ -23,5 +23,5 @@ repositories {
 
 dependencies {
     implementation("net.minecrell.licenser:net.minecrell.licenser.gradle.plugin:0.4.1")
-    implementation("net.minecraftforge.gradle:ForgeGradle:3.+")
+    implementation("net.minecraftforge.gradle:ForgeGradle:3.0.+")
 }
