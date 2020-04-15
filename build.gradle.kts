@@ -9,7 +9,7 @@ buildscript {
     }
 }
 plugins {
-    id("org.spongepowered.gradle.sponge.impl") version "0.11.2-SNAPSHOT"
+    id("org.spongepowered.gradle.sponge.impl") version "0.11.3-SNAPSHOT"
     id("net.minecraftforge.gradle")
 }
 
