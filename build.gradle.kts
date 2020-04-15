@@ -36,11 +36,7 @@ spongeDev {
             sourceType.set(SourceType.Launch)
             configurations += "launch"
         }
-        register("launchWrapper") {
-            dependsOn += "launch"
-            configurations += "launch"
-        }
-        register("modLauncher") {
+        register("modlauncher") {
             dependsOn += "launch"
             configurations += "launch"
         }
